@@ -13,10 +13,18 @@ for(let r = 0; r < 16; r++){
 	container.appendChild(row);
 }
 
+
 let squares = document.querySelectorAll(".square");
 
-let changeColor = (e) => {
+let drawColor = (e) => {
 	e.target.style.backgroundColor = 'black';
 }
 
-squares.forEach(square => square.addEventListener("mouseenter", changeColor));
+squares.forEach(square => square.addEventListener("mouseenter", drawColor));
+
+let reset = () => {
+	squares.forEach(square => square.style.backgroundColor = "white");
+}
+
+let clearGrid = document.querySelector("#clear");
+clearGrid.addEventListener("click", reset);
