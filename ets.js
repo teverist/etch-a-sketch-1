@@ -1,5 +1,6 @@
 let container = document.getElementById("container");
-
+let color = "black";
+let rainbow = false;
 
 for(let r = 0; r < 16; r++){
 	let row = document.createElement("div");
@@ -17,7 +18,18 @@ for(let r = 0; r < 16; r++){
 let squares = document.querySelectorAll(".square");
 
 let drawColor = (e) => {
-	e.target.style.backgroundColor = 'black';
+	if(rainbow){
+		function getRandomColor(){
+		let letters = '0123456789ABCDEF';
+		let newColor = '#';
+		for(let i = 0; i < 6; i++){
+			newColor += letters[Math.floor(Math.random() * 16)];
+		}
+		return newColor;
+	}
+	color = getRandomColor();
+	}
+	e.target.style.backgroundColor = color;
 }
 
 squares.forEach(square => square.addEventListener("mouseenter", drawColor));
@@ -28,3 +40,16 @@ let reset = () => {
 
 let clearGrid = document.querySelector("#clear");
 clearGrid.addEventListener("click", reset);
+
+let setRainbow = () =>{
+	rainbow = true;
+}
+
+let rainbowBtn = document.querySelector("#rainbow");
+rainbowBtn.addEventListener("click", setRainbow);
+
+
+
+
+
+
